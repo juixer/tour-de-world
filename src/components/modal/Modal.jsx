@@ -11,7 +11,7 @@ const modal = ({countryDetails}) => {
                 </div>
                 <p className="mb-2 mt-3 text-xl">Official Name: <span className="text-sky-400">{name?.official}</span></p>
                 <p className="mb-2 text-xl">CIOC: <span className="text-sky-400">{cioc? cioc : 'N/A'}</span></p>
-                <p className="mb-2 text-xl">Currencies: <span className="text-sky-400">{countryDetails?.currencies?.BDT.name}</span></p>
+                <p className="mb-2 text-xl">Currencies: <span className="text-sky-400">{}</span></p>
                 <p className="mb-2 text-xl">Capital: <span className="text-sky-400">{capital}</span></p>
                 <p className="mb-2 text-xl">Region: <span className="text-sky-400">{region}</span></p>
                 <p className="mb-2 text-xl">Area: <span className="text-sky-400">{area}</span></p>

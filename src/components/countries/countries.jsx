@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Country from "../country/Country";
 import Modal from "../modal/modal";
+import { addToLocalStorage, getLocalStorage, removeLocalStorage } from "../local storage/localstorage";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -15,6 +16,21 @@ const Countries = () => {
     };
     showCountries();
   }, []);
+  // load card from local storage
+  useEffect(() =>{
+    console.log('object', countries.length);
+    if(countries.length){
+      const storedData = getLocalStorage();
+      const savedData = []
+      for (const id of storedData) {
+        const country = countries.find(country => country.cca3 === id);
+        if(country){
+          savedData.push(country);
+        }
+      }
+      setVisitedCountries(savedData);
+    }
+  }, [countries])
 
   const hundelVisited = country => {
     const cca3 = country.cca3;
@@ -25,15 +41,16 @@ const Countries = () => {
         newVisitedCountries.push(country);
         setVisitedCountries(newVisitedCountries);
     }
+    addToLocalStorage(cca3);
   };
     const removeCountry= (cca3) =>{
     const filteredCountry = visitedCountries.filter((item) => item.cca3 !== cca3);
     setVisitedCountries(filteredCountry);
+    removeLocalStorage(cca3);
   }
 
   const showCountryDetails = country => {
       setCountryDetails(country)
-      console.log(countryDetails);
   }
 
   return (
